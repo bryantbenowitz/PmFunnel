@@ -9,12 +9,14 @@ from datetime import datetime
 app = Flask(__name__)
 local_frontend_url = "http://localhost:5173"
 local_ip_url = "http://10.0.0.181:3000"
-miriel_url = "https://miriel.ai"
-miriel_url2 = "https://miriel.ai"
+pmfunnel = "https://bryantbenowitz.com"
+pmfunnel2 = "https://www.bryantbenowitz.com"
+pmfunnel3 = "bryantbenowitz.com"
+pmfunnel4 = "www.bryantbenowitz.com"
 #josh_local_ip = ":3000"
 
 # add josh_local_ip to the list of origins below 
-CORS(app, origins=[local_frontend_url], supports_credentials=True)
+CORS(app, origins=[local_frontend_url, pmfunnel, pmfunnel2, pmfunnel3, pmfunnel4], supports_credentials=True)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 #d = Db()
@@ -50,7 +52,7 @@ def insert_into_google_sheets(name, email, phone, company):
 
 import traceback
 
-@app.route("/submit", methods=["POST"])
+@app.route("/api/submit", methods=["POST"])
 def submit():
     try:
         data = request.json  # Receive JSON data from frontend
@@ -71,6 +73,3 @@ def submit():
         traceback.print_exc()  # Prints full error traceback
         return jsonify({"error": str(e)}), 500
 
-# Run Flask server
-if __name__ == "__main__":
-    app.run(debug=True, port=5000)

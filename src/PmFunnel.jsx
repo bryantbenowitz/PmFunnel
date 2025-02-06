@@ -20,7 +20,7 @@ const PmFunnel = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/submit", {
+      const response = await fetch("https://bryantbenowitz.com/api/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -44,12 +44,13 @@ const PmFunnel = () => {
       {/* Navbar */}
       <header className="py-4 md:py-6 flex justify-between items-center px-8 max-w-7xl mx-auto">
         <h1 className="text-xl font-bold text-gray-900">PmFunnel</h1>
-        <a
-          href="#"
-          className="px-6 py-3 text-base font-bold text-white bg-gray-900 rounded-xl hover:bg-gray-600 focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+        <button
+          onClick={() => setShowForm(true)}
+          className="px-6 py-3 text-base font-bold text-white bg-gray-900 rounded-xl hover:bg-gray-600 transition-transform transform hover:scale-105 active:scale-95"
         >
           Sign up
-        </a>
+        </button>
+
       </header>
 
       {/* Hero Section */}
@@ -130,10 +131,20 @@ const PmFunnel = () => {
                     </form>
                 </div>
                 ) : (
-                <div className="mt-6 p-6 bg-white shadow-xl rounded-xl w-full max-w-md mx-auto transition-all duration-500">
+                  <div className="relative mt-6 p-6 bg-white shadow-xl rounded-xl w-full max-w-md mx-auto transition-all duration-500">
+                    {/* Close Button (Red "X") */}
+                    <button
+                      onClick={() => setSubmitted(false)}
+                      className="absolute top-3 right-3 text-red-500 hover:text-red-700 text-lg font-bold"
+                    >
+                      ✖
+                    </button>
+                  
+                    {/* Thank You Message */}
                     <h3 className="text-xl font-bold text-green-600">Thank you!</h3>
                     <p className="text-gray-700">Your information has been received.</p>
-                </div>
+                  </div>
+                
                 )}
           </div>
         </div>
