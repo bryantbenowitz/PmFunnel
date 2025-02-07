@@ -43,10 +43,18 @@ const PmFunnel = () => {
     <div className="overflow-x-hidden bg-gray-50">
       {/* Navbar */}
       <header className="py-4 md:py-6 flex justify-between items-center px-8 max-w-7xl mx-auto">
-        <h1 className="text-xl font-bold text-gray-900">PmFunnel</h1>
+        <div className="relative inline-block">
+          {/* Background Glow Effect */}
+          <span className="absolute inset-0 bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] blur-lg filter opacity-40 w-full h-full rounded-lg"></span>
+          
+          {/* Logo Text */}
+          <h1 className="relative text-xl font-bold text-gray-900">PmFunnel</h1>
+        </div>
+
+
         <button
-          onClick={() => setShowForm(true)}
-          className="px-6 py-3 text-base font-bold text-white bg-gray-900 rounded-xl hover:bg-gray-600 transition-transform transform hover:scale-105 active:scale-95"
+        onClick={() => setShowForm(true)}
+        className="px-6 py-3 text-base font-bold text-white bg-gray-900 rounded-xl hover:bg-gray-600 transition-transform transform hover:scale-105 active:scale-95"
         >
           Sign up
         </button>
@@ -54,7 +62,7 @@ const PmFunnel = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="relative text-center">
+      <section className="relative text-center mt-8 sm:mt-[-20px]">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 mt-[-20px]">
           <h2 className="text-lg text-gray-600">
             You're managing properties — why not grow your real estate business too?
@@ -72,8 +80,9 @@ const PmFunnel = () => {
           <div className="mt-8 flex flex-col sm:flex-row sm:justify-center sm:space-x-5 transition-all duration-300">
                 {!showForm ? (
                 <div className="relative group cursor-pointer">
-                    {/* Glowing Gradient Effect */}
-                    <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 to-violet-500 rounded-xl blur opacity-45 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                    {/* Glowing Gradient Effect
+                    <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 to-violet-500 rounded-xl blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                     */}
                     
                     {/* CTA Button */}
                     <button
@@ -84,7 +93,14 @@ const PmFunnel = () => {
                     </button>
                 </div>
                 ) : !submitted ? (
-                <div className="mt-6 p-6 bg-white shadow-xl rounded-xl w-full max-w-md mx-auto transition-all duration-500">
+                  <div className="relative mt-6 p-6 bg-white shadow-xl rounded-xl w-full max-w-md mx-auto transition-all duration-500">
+                    {/* Close Button (Red "X") */}
+                    <button
+                      onClick={() => setShowForm(false)}
+                      className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-lg font-bold"
+                    >
+                      ✖
+                    </button>
                     <h3 className="text-xl font-bold text-gray-900 mb-4">Enter Your Info</h3>
                     <form onSubmit={handleSubmit} className="space-y-4">
                     <input
@@ -157,13 +173,15 @@ const PmFunnel = () => {
           <div className="absolute w-[90%] h-[80%] max-w-4xl bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] opacity-50 blur-[50px] rounded-lg translate-y-10"></div>
 
           <video
-            className="relative z-10 transform scale-95 rounded-lg shadow-lg max-w-3xl"
+            className="relative z-10 transform rounded-lg shadow-lg max-w-[90%] sm:max-w-3xl sm:scale-95"
             src="/pmfunnelvid.mp4"
             controls
+            playsInline
             autoPlay
             loop
             muted
           />
+
         </div>
       </section>
 
